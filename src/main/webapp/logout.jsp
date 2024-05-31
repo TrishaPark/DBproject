@@ -1,6 +1,6 @@
-<%@ page contentType="text/html; charset=EUC-KR" %>
+<%@ page contentType="text/html; charset=UTF-8" %>
 <% session.invalidate(); %>
 <script>
-alert("·Î±×¾Æ¿ô µÇ¾ú½À´Ï´Ù.");
-location.href="main.jsp";
+alert("ë¡œê·¸ì•„ì›ƒ ë˜ì—ˆìŠµë‹ˆë‹¤.");
+location.href="login_page.jsp";
 </script>
