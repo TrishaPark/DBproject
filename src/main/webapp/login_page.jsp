@@ -7,26 +7,44 @@
     <link rel="stylesheet" type="text/css" href="css/login_page_style.css">
     <title>숙명식당 로그인</title>
     <script>
-    function check() {
-        if (document.getElementById("userID").value == "") {
-            alert("아이디를 입력하세요");
+    function blank_check() {
+        if(document.getElementById("user_id").value == "") {
+            alert("아이디(학번)를 입력하세요");
             return false;
         }
-        if (document.getElementById("userPassword").value == "") {
+        if(document.getElementById("user_password").value == "") {
             alert("비밀번호를 입력하세요");
             return false;
         }
-        return true; // true를 반환하여 폼이 제출되도록 함
+        return true; // 폼을 제출합니다.
     }
-        function showError() {
+    	
+    function showError() {
             const urlParams = new URLSearchParams(window.location.search);
             if (urlParams.has('error')) {
                 alert("아이디와 비밀번호가 올바르지 않습니다");
             }
         }
         
-        window.onload = showError;
-</script>
+        
+        
+   function registerSuccess() {
+            
+            const urlParams = new URLSearchParams(window.location.search);
+            if (urlParams.has('register_success')) {
+                alert("회원가입이 완료되었습니다!\n 로그인 후 이용해주세요 ^^");
+            }
+   }
+            
+     
+         
+    window.onload = function() {
+    	
+            showError();
+            registerSuccess();
+        }
+        
+	</script>
 
 </head>
 <style>
@@ -54,14 +72,14 @@
  <!-- 로고 이미지 -->  
         <form name ="loginForm" action="login_verify.jsp" method="post">
         
-            <input type="text"  name="userID" id = "userID" placeholder="학번(아이디)" required>
-            <input type="password" name="userPassword" id = "userPassword" placeholder="비밀번호" required>
+            <input type="text"  name="user_id" id = "user_id" placeholder="학번(아이디)" required>
+            <input type="password" name="user_password" id = "user_password" placeholder="비밀번호" required>
             
 			<label>
 			<a href="lost_password.jsp">비밀번호 찾기</a>
 			</label>
 			
-            <button type="submit" NAME="login" onclick = "check()">로그인</button>
+            <button type="submit" value = "submit" NAME="login" onclick = "blank_check()">로그인</button>
             
         </form>
         

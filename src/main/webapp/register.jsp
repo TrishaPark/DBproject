@@ -6,6 +6,39 @@
     <meta charset="UTF-8">
     <link rel="stylesheet" type="text/css" href="css/register_style.css">
     <title>숙명식당 회원가입</title>
+    
+    <script>
+
+    function blank_check() {
+        if(document.getElementById("user_name").value == "") {
+            alert("이름을 입력하세요");
+            return false;
+        }
+        if(document.getElementById("user_id").value == "") {
+            alert("아이디(학번)를 입력하세요");
+            return false;
+        }
+        if(document.getElementById("user_password").value == "") {
+            alert("비밀번호를 입력하세요");
+            return false;
+        }
+
+        return true; // 폼을 제출합니다.
+    }
+    
+    function registerErr() {
+    	if(urlParams.has('register_err')){
+        	alert("회원가입 실패...\n 입력내용을 다시 한번 확인해주세요.");
+        }
+    }
+    
+    window.onload = function() {
+    	
+        registerErr();
+    }
+    
+    
+    </script>
 </head>
 <style>
         .register-container a {
@@ -20,6 +53,7 @@
             margin-top: 15px;
             /* 가운데 정렬 */
         }
+        
         </style>
 
 <body>
@@ -32,21 +66,24 @@
 	<h1>숙명식당</h1>
 	</div>
  <!-- 로고 이미지 -->       
-        <form action="login_verify.jsp" method="post">
+        <form name ="registerForm" action="register_user.jsp" method="post">
             
-            <input type="text" id="name" name="name" placeholder="이름" required>
-            <input type="text" id="studentID" name="studentID" placeholder="학번(아이디)" required>
-            <input type="text" id="username" name="username" placeholder="닉네임" required>
-            <input type="text" id="password" name="password" placeholder="비밀번호" required>
+            <input type="text" id="user_name" name="user_name" placeholder="이름" required>
+            <input type="text" id="user_id" name="user_id" placeholder="학번(아이디)" required>
+            <input type="text" id="user_password" name="user_password" placeholder="비밀번호" required>
+            <input type="text" id="nickname" name="nickname" placeholder="닉네임(선택)" >
+           
             
 			
 			
-            <button type="submit">회원가입</button>
+            <button type="submit" value = "submit" name ="register" onclick = "blank_check()">회원가입</button>
             
            
         </form>
         
         <a href="login_page.jsp">이전화면</a> 
+        
+          
         
 	 </div>
 </body>
