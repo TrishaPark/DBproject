@@ -1,12 +1,14 @@
 <%@ page import="java.sql.*, javax.sql.*" %>
 <%@ page import="javax.naming.*" %>
-<%@ page contentType="text/html; charset=UTF-8" language="java" %>
+<%@ page contentType="text/html; charset=UTF-8" language="java" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
-<html lang="ko">
+<html>
+
 <head>
     <meta charset="UTF-8">
     <title>회원가입 처리</title>
 </head>
+
 <body>
 
 <%
