@@ -3,7 +3,7 @@
 <html>
 
 <head>
-    <meta charset="UTF-8">
+    <meta charset="EUC-KR">
     <link rel="stylesheet" type="text/css" href="css/login_page_style.css">
     <title>숙명식당 로그인</title>
     <script>

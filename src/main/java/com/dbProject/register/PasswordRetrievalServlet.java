@@ -52,9 +52,9 @@ public class PasswordRetrievalServlet extends HttpServlet {
 
             if (rs.next()) {
                 user_password = rs.getString("user_password");
-                System.out.println("Password found: " + user_password);
+                System.out.println(user_name +"님의 비밀번호: " + user_password );
             } else {
-                System.out.println("No matching user found in the database.");
+                System.out.println("일치하는 유저 정보가 존재하지 않습니다");
             }
         } catch (SQLException | ClassNotFoundException e) {
             e.printStackTrace();
@@ -70,9 +70,9 @@ public class PasswordRetrievalServlet extends HttpServlet {
 
         String message;
         if (user_password != null) {
-            message = "Your password is: " + user_password;
+            message = user_name + "님의 비밀번호: " + user_password;
         } else {
-            message = "No matching user found.";
+            message = "일치하는 유저 정보가 존재하지 않습니다";
         }
 
         System.out.println("Response message: " + message);

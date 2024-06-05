@@ -22,6 +22,7 @@ try {
     
     if (rs.next()) {
         isValidUser = true;
+        
     }
 } catch (Exception e) {
     e.printStackTrace();
@@ -37,7 +38,8 @@ try {
 
 if (isValidUser) {
     session.setAttribute("user", user_id);
-    response.sendRedirect("main.jsp");
+    
+    response.sendRedirect("home_page.jsp");
 } else {
     
     response.sendRedirect("login_page.jsp?error=true");
