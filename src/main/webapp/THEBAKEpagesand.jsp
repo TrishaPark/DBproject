@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-    
+
 <%@ page import="java.sql.*" %>
 <%@ page import="java.util.*" %>
 <%
@@ -17,7 +17,7 @@
         Class.forName(dbDriver);
         conn = DriverManager.getConnection(dbURL, dbUser, dbPasswd);
         stmt = conn.createStatement();
-        String query = "SELECT menu_name, menu_price,imageurl FROM menu where cafeteria_code = 'ms' AND menu_category='양식'";
+        String query = "SELECT menu_name, menu_price,imageurl FROM menu where cafeteria_code = 'tb' AND menu_category='샌드위치'";
         rs = stmt.executeQuery(query);
 
         while (rs.next()) {
@@ -42,8 +42,8 @@
 <html>
 <head>
     <meta charset="UTF-8">
-    <title>명신관</title>
-    <link rel="stylesheet" type="text/css" href="css/MSpage.css">
+    <title>더베이크</title>
+    <link rel="stylesheet" type="text/css" href="css/THEBAKEpage.css">
 </head>
 <style>
 .modal {
@@ -76,9 +76,10 @@
 <body>
 <div class="mainpage">
     <ul class="category">
-        <li class="menu-item" id="cupbab" onclick="selectMenu('cupbab')"><a href="MSpage.jsp">컵밥</a></li>
-        <li class="menu-item selected" id="western" onclick="selectMenu('western')"><a href="MSpageWestern.jsp">양식</a></li>
-        <li class="menu-item" id="special" onclick="selectMenu('special')"><a href="MSpageSpecial.jsp">스페셜메뉴</a></li>
+        <li class="menu-item" id="bakery" onclick="selectMenu('bakery')"><a href="THEBAKEpage.jsp">베이커리</a></li>
+        <li class="menu-item selected" id="sand" onclick="selectMenu('sand')"><a href="THEBAKEpagesand.jsp">샌드위치</a></li>
+        <li class="menu-item" id="drink" onclick="selectMenu('drink')"><a href="THEBAKEpagedrink.jsp">커피/음료</a></li>
+        
     </ul>
     <div class="menu-container" id="menu-container">
         <% 
@@ -124,6 +125,7 @@
     </div>
 </div>
 
+
 <script>
 
     function selectMenu(category) {
@@ -141,9 +143,15 @@
     function closeModal(modalId) {
         document.getElementById(modalId).style.display = "none";
     }
+    
+    window.onclick = function(event) {
+        if (event.target.classList.contains("modal")) {
+            event.target.style.display = "none";
+        }
+    };
 
     document.addEventListener('DOMContentLoaded', function() {
-        selectMenu('cupbab');
+        selectMenu('sand');
         
         var addToCartButtons = document.getElementsByClassName('add-to-cart');
         for (var i = 0; i < addToCartButtons.length; i++) {

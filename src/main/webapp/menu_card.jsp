@@ -76,9 +76,9 @@
 <body>
 <div class="mainpage">
     <ul class="category">
-        <li class="menu-item selected" id="cupbab" onclick="selectMenu('cupbab')"><a href="MSpage.jsp">컵밥</a></li>
+        <li class="menu-item" id="cupbab" onclick="selectMenu('cupbab')"><a href="MSpage.jsp">컵밥</a></li>
         <li class="menu-item" id="western" onclick="selectMenu('western')"><a href="MSpageWestern.jsp">양식</a></li>
-        <li class="menu-item" id="special" onclick="selectMenu('special')"><a href="MSpageSpecial.jsp">스페셜메뉴</a></li>
+        <li class="menu-item selected" id="special" onclick="selectMenu('special')"><a href="MSpageSpecial.jsp">스페셜메뉴</a></li>
     </ul>
     <div class="menu-container" id="menu-container">
         <% 
@@ -145,7 +145,7 @@
     }
 
     document.addEventListener('DOMContentLoaded', function() {
-        selectMenu('cupbab');
+        selectMenu('western');
         
         var addToCartButtons = document.getElementsByClassName('add-to-cart');
         for (var i = 0; i < addToCartButtons.length; i++) {

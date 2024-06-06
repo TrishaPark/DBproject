@@ -17,14 +17,14 @@
         Class.forName(dbDriver);
         conn = DriverManager.getConnection(dbURL, dbUser, dbPasswd);
         stmt = conn.createStatement();
-        String query = "SELECT menu_name, menu_price FROM menu where cafeteria_code = 'ms' AND menu_category='컵밥'";
+        String query = "SELECT menu_name, menu_price,imageurl FROM menu where cafeteria_code = 'ms' AND menu_category='컵밥'";
         rs = stmt.executeQuery(query);
 
         while (rs.next()) {
             Map<String, String> menuItem = new HashMap<>();
             menuItem.put("menu_name", rs.getString("menu_name"));
             menuItem.put("menu_price", rs.getString("menu_price"));
-            
+            menuItem.put("imageUrl", rs.getString("imageurl"));
             menuList.add(menuItem);
         }
     } catch (Exception e) {
@@ -86,6 +86,7 @@
             for (Map<String, String> menuItem : menuList) {
                 String name = menuItem.get("menu_name");
                 String price = menuItem.get("menu_price");
+                String image = menuItem.get("imageUrl");
                 String modalId = "modal" + i;
                 String quantityId = "quantity" + i;
                 String addToCartId = "addToCart" + i;
@@ -93,7 +94,7 @@
         %>
         <button class="menu-item-card">
             <div class="menu-item-background">
-                <div class="menu-item-image" style="background-image: url('images/myeong2.png');"></div>
+                <div class="menu-item-image" style="background-image: url('<%= image %>');"></div>
                 <div class="menu-item-divider"></div>
                 <div class="menu-item-name"><%= name %></div>
                 <div class="menu-item-price"><%= price %>원</div>
