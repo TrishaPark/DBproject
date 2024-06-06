@@ -24,7 +24,7 @@
             <a href="MSpage.jsp">명신관</a>
             <a href="SHpage.jsp">순헌관</a>
             <a href="thebake.jsp">더베이크</a>
-            <a href="board.jsp">게시판</a>
+            <a href="popular_menu.jsp">인기메뉴</a>
         </nav>
         <hr>
      	<div class="main-banner">
