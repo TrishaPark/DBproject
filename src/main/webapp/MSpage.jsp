@@ -123,8 +123,6 @@
     </div>
 </div>
 
-<script src="javascript/MSpage.js"></script>
-<script src="javascript/MSpagemodal.js"></script>
 
 <script>
 
@@ -143,6 +141,12 @@
     function closeModal(modalId) {
         document.getElementById(modalId).style.display = "none";
     }
+    
+    window.onclick = function(event) {
+        if (event.target.classList.contains("modal")) {
+            event.target.style.display = "none";
+        }
+    };
 
     document.addEventListener('DOMContentLoaded', function() {
         selectMenu('cupbab');
