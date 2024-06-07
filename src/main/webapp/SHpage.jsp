@@ -144,13 +144,17 @@
 	        </div>
 	        <div class="quantity">
                 <label for="koreanQuantity">수량 :</label>
-                <input type="number" id="koreanQuantity" name="quantity" value="0" min="0" max="5">
+                <input type="number" id="koreanQuantity" name="quantity" value="1" min="1" max="5">
             </div>
                 
-                <button id="addToCartKorean" class="add-to-cart">장바구니</button>
-                <button onclick="closeModal('koreanMealModal')" class="add-to-cart">닫기</button>
-         		
-         </div>
+        <form action="addToCart.jsp" method="post">
+        <input type="hidden" name="cafeteriaCode" value="sh">
+        <input type="hidden" name="menu_num" value=201>
+        <input type="hidden" id="koreanCount" name="count" value="1">
+        <button type="submit" id="addToCartKorean" class="add-to-cart">장바구니</button>
+    	</form>
+    	<button onclick="closeModal('koreanMealModal')" class="add-to-cart">닫기</button>
+	</div>
 	
 	    <!-- Western Meal Modal -->
 	    <div id="westernMealModal" class="modal">
@@ -160,13 +164,34 @@
 	        </div>
 	        <div class="quantity">
                 <label for="WesternQuantity">수량 :</label>
-                <input type="number" id="WesternQuantity" name="quantity" value="0" min="0" max="5">
+                <input type="number" id="WesternQuantity" name="quantity" value="1" min="1" max="5">
             </div>
                 
-	            <button id="addToCartWestern" class="add-to-cart">장바구니</button>
-	            <button onclick="closeModal('westernMealModal')" class="add-to-cart">닫기</button>
-          		  
-        </div>
+	        <form action="addToCart.jsp" method="post">
+        <input type="hidden" name="cafeteriaCode" value="sh">
+        <input type="hidden" name="menu_num" value=202>
+        <input type="hidden" id="westernCount" name="count" value="1">
+        <button type="submit" id="addToCartWestern" class="add-to-cart">장바구니</button>
+    </form>
+    <button onclick="closeModal('westernMealModal')" class="add-to-cart">닫기</button>
+</div>
+<script>
+    function openModal(modalId) {
+        document.getElementById(modalId).style.display = "block";
+    }
+
+    function closeModal(modalId) {
+        document.getElementById(modalId).style.display = "none";
+    }
+
+    document.getElementById("koreanQuantity").addEventListener("input", function() {
+        document.getElementById("koreanCount").value = this.value;
+    });
+
+    document.getElementById("westernQuantity").addEventListener("input", function() {
+        document.getElementById("westernCount").value = this.value;
+    });
+</script>
 	<script src="javascript/SHpage.js"></script>
 	<script src="javascript/SHmodal.js"></script>
 </body>

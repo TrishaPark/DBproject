@@ -17,7 +17,7 @@
         Class.forName(dbDriver);
         conn = DriverManager.getConnection(dbURL, dbUser, dbPasswd);
         stmt = conn.createStatement();
-        String query = "SELECT menu_num, menu_name, menu_price,imageurl FROM menu where cafeteria_code = 'ms' AND menu_category='스페셜메뉴'";
+        String query = "SELECT menu_num, menu_name, menu_price,imageurl FROM menu where cafeteria_code = 'ms' AND menu_category='면류'";
         rs = stmt.executeQuery(query);
 
         while (rs.next()) {
@@ -79,8 +79,8 @@
     <ul class="category">
         <li class="menu-item" id="cupbab" onclick="selectMenu('cupbab')"><a href="MSpage.jsp">컵밥</a></li>
         <li class="menu-item" id="western" onclick="selectMenu('western')"><a href="MSpageWestern.jsp">양식</a></li>
-        <li class="menu-item selected" id="special" onclick="selectMenu('special')"><a href="MSpageSpecial.jsp">스페셜메뉴</a></li>
-        <li class="menu-item" id="noodle" onclick="selectMenu('noodle')"><a href="MSpageNoodle.jsp">면류</a></li>
+        <li class="menu-item" id="special" onclick="selectMenu('special')"><a href="MSpageSpecial.jsp">스페셜메뉴</a></li>
+        <li class="menu-item selected" id="noodle" onclick="selectMenu('noodle')"><a href="MSpageNoodle.jsp">면류</a></li>
     </ul>
     <div class="menu-container" id="menu-container">
         <% 
@@ -154,7 +154,7 @@
     }
 
     document.addEventListener('DOMContentLoaded', function() {
-        selectMenu('special');
+        selectMenu('noodle');
         
         var addToCartButtons = document.getElementsByClassName('add-to-cart');
         for (var i = 0; i < addToCartButtons.length; i++) {

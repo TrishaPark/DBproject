@@ -80,6 +80,7 @@
         <li class="menu-item selected" id="cupbab" onclick="selectMenu('cupbab')"><a href="MSpage.jsp">컵밥</a></li>
         <li class="menu-item" id="western" onclick="selectMenu('western')"><a href="MSpageWestern.jsp">양식</a></li>
         <li class="menu-item" id="special" onclick="selectMenu('special')"><a href="MSpageSpecial.jsp">스페셜메뉴</a></li>
+        <li class="menu-item" id="noodle" onclick="selectMenu('noodle')"><a href="MSpageNoodle.jsp">면류</a></li>
     </ul>
     <div class="menu-container" id="menu-container">
         <% 
