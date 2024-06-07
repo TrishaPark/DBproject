@@ -1,5 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+         pageEncoding="UTF-8"%>
 <%@ page import="java.sql.*" %>
 <%@ page import="java.util.ArrayList" %>
 <!DOCTYPE html>
@@ -93,7 +93,7 @@
                 
         %>
 		<span class="buttoncontainer">
-			<button class="SHmenu1">
+			<button class="SHmenu1" onclick="openModal('koreanMealModal')">
 				<div>
 					<div class="menu-items">
 			            <% 
@@ -113,7 +113,7 @@
 					</div>
 				</div>
 			</button>
-			<button class="SHmenu2">
+			<button class="SHmenu2" onclick="openModal('westernMealModal')">
 				<div>
 					<div class="menu-items">
 			            <% 
@@ -148,8 +148,8 @@
             </div>
                 
         <form action="addToCart.jsp" method="post">
-        <input type="hidden" name="cafeteriaCode" value="sh">
-        <input type="hidden" name="menu_num" value=201>
+        <input type="hidden" name="cafeteria_code" value="sh">
+        <input type="hidden" name="menu_num" value="201">
         <input type="hidden" id="koreanCount" name="count" value="1">
         <button type="submit" id="addToCartKorean" class="add-to-cart">장바구니</button>
     	</form>
@@ -163,13 +163,13 @@
 	            <p>양식 식권</p>
 	        </div>
 	        <div class="quantity">
-                <label for="WesternQuantity">수량 :</label>
-                <input type="number" id="WesternQuantity" name="quantity" value="1" min="1" max="5">
+                <label for="westernQuantity">수량 :</label>
+                <input type="number" id="westernQuantity" name="quantity" value="1" min="1" max="5">
             </div>
                 
 	        <form action="addToCart.jsp" method="post">
-        <input type="hidden" name="cafeteriaCode" value="sh">
-        <input type="hidden" name="menu_num" value=202>
+        <input type="hidden" name="cafeteria_code" value="sh">
+        <input type="hidden" name="menu_num" value="202">
         <input type="hidden" id="westernCount" name="count" value="1">
         <button type="submit" id="addToCartWestern" class="add-to-cart">장바구니</button>
     </form>
