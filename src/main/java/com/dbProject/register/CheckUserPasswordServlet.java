@@ -12,12 +12,13 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import oracle.jdbc.OracleTypes;
 
-@WebServlet("/CheckUserIdServlet")
-public class CheckUserIdServlet extends HttpServlet {
+@WebServlet("/CheckUserPasswordServlet")
+public class CheckUserPasswordServlet extends HttpServlet {
     private static final long serialVersionUID = 1L;
 
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String user_id = request.getParameter("user_id");
+        String user_password = request.getParameter("user_password");
         response.setContentType("text/plain; charset=UTF-8");
         PrintWriter out = response.getWriter();
 
@@ -32,14 +33,15 @@ public class CheckUserIdServlet extends HttpServlet {
             Class.forName(dbDriver);
             conn = DriverManager.getConnection(dbURL, dbUser, dbPasswd);
 
-            String plsql = "{call CHECK_USER_ID(?, ?)}";
+            String plsql = "{call check_user_password(?, ?, ?)}";
             cstmt = conn.prepareCall(plsql);
             cstmt.setString(1, user_id);
-            cstmt.registerOutParameter(2, OracleTypes.VARCHAR);
+            cstmt.setString(2, user_password);
+            cstmt.registerOutParameter(3, OracleTypes.VARCHAR);
 
             cstmt.execute();
 
-            String result = cstmt.getString(2);
+            String result = cstmt.getString(3);
             out.print(result);
         } catch (Exception e) {
             e.printStackTrace();

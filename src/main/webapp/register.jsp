@@ -28,6 +28,26 @@
 
         xhr.send("user_id=" + encodeURIComponent(userId));
     }
+    function checkUserPassword() {
+        var userId = document.getElementById("user_id").value;
+        var userPassword = document.getElementById("user_password").value;
+        if (userPassword === "") {
+            document.getElementById("password_check").innerText = "비밀번호를 입력하세요.";
+            return;
+        }
+
+        var xhr = new XMLHttpRequest();
+        xhr.open("POST", "CheckUserPasswordServlet", true);
+        xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+
+        xhr.onreadystatechange = function() {
+            if (xhr.readyState === 4 && xhr.status === 200) {
+                document.getElementById("password_check").innerText = xhr.responseText;
+            }
+        };
+
+        xhr.send("user_id=" + encodeURIComponent(userId) + "&user_password=" + encodeURIComponent(userPassword));
+    }
 
     function blank_check() {
         if (document.getElementById("user_name").value == "") {
@@ -48,6 +68,14 @@
             alert("아이디가 중복되었습니다. 다른 아이디를 사용하세요.");
             return false;
         }
+        var passwordCheckText = document.getElementById("password_check").innerText;
+        if (passwordCheckText !== "사용 가능한 비밀번호입니다") {
+            alert("비밀번호가 유효하지 않습니다. 다시 확인하세요.");
+            return false;
+        }
+
+      
+    
 
         return true; // 폼을 제출합니다.
     }
@@ -98,9 +126,10 @@
             <input type="text" id="user_name" name="user_name" placeholder="이름" required>
             <input type="text" id="user_id" name="user_id" placeholder="학번(아이디)" onkeyup="checkUserId()" required>
        
-            <span id="user_id_check" style="color: #3D5576; display: inline-block; margin-right: 200px; font-family: 'Noto Sans'; font-size : 14px"></span>
+            <span id="user_id_check" style="color: #3D5576; display: inline-block; margin-right: 50px; font-family: 'Noto Sans'; font-size : 12px"></span>
             
-            <input type="text" id="user_password" name="user_password" placeholder="비밀번호" required>
+            <input type="password" id="user_password" name="user_password" placeholder="비밀번호" onkeyup="checkUserPassword()" required>
+            <span id="password_check" style="color: #3D5576; display: inline-block; margin-right: 50px; font-family: 'Noto Sans'; font-size : 12px"></span>
             <input type="text" id="nickname" name="nickname" placeholder="닉네임(선택)" >
            
             

@@ -1,9 +1,10 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%
+
     String user_id = (String) session.getAttribute("user");
-	String nickname = (String) session.getAttribute("nickname");
-	    
+    String nickname = (String) session.getAttribute("nickname");
+		    
 
 %>
 <!DOCTYPE html>
@@ -42,7 +43,7 @@
 		margin-top:10px;
 	}
 
-	button {
+	.button {
         cursor: pointer;
         padding: 10px 20px;
         margin: 5px;
@@ -51,7 +52,7 @@
         border: 1px solid #ddd;
     }
 
-    button:hover {
+    .button:hover {
         background-color: #e8e8e8;
     }
     
@@ -109,8 +110,9 @@
 <table width="100%" align="center" height="100%">
 
 <!-- 프로파일 부분 -->
-<div class = "components">
+<div class = "components">   
 	<span><strong><%= nickname %></strong>님 반갑습니다!</span>
+	
 	<div class = "profile">
 		<img src = "images/profile.png" alt="프로필 사진">
 			<div class = "profileInfo">
