@@ -14,6 +14,10 @@
             	<div class="page-title"><a href="home_page.jsp">숙명식당</a></div>
           	</div>
             <div class="user-controls">
+            <%
+    String nickname = (String) session.getAttribute("nickname");
+%>
+            	<p>환영합니다, <%= nickname %>!</p>
                 <a href="logout.jsp">로그아웃</a>
                 <a href="mypage.jsp">마이페이지</a>
                 <a href="cart.jsp">장바구니</a>
@@ -24,7 +28,7 @@
             <a href="MSpage.jsp">명신관</a>
             <a href="SHpage.jsp">순헌관</a>
             <a href="THEBAKEpage.jsp">더베이크</a>
-            <a href="TBpopularpage.jsp">인기메뉴</a>
+            <a href="POPULARpage.jsp">인기메뉴</a>
         </nav>
         <hr>
      	<div class="main-banner">

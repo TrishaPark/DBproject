@@ -4,35 +4,39 @@
 <%@ page import="java.util.*" %>
 <%
 	String dbDriver = "oracle.jdbc.driver.OracleDriver";
-	String dbURL = "jdbc:oracle:thin:@localhost:1521:xe"; // Update with your DB details
-	String dbUser = "dbProject"; // Update with your DB username
-	String dbPasswd = "000828"; // Update with your DB password
+	String dbURL = "jdbc:oracle:thin:@localhost:1521:xe";
+	String dbUser = "dbProject";
+	String dbPasswd = "000828";
     Connection conn = null;
-    Statement stmt = null;
+    PreparedStatement pstmt = null;
     ResultSet rs = null;
-    List<Map<String, String>> menuList = new ArrayList<>();
+    List<Map<String, String>> tbMenuList = new ArrayList<>();
 
     try {
-        Class.forName("oracle.jdbc.driver.OracleDriver");
+        Class.forName(dbDriver);
         conn = DriverManager.getConnection(dbURL, dbUser, dbPasswd);
-        stmt = conn.createStatement();
-        String query = "SELECT * FROM menu";
-        rs = stmt.executeQuery(query);
-
+        
+        //상위 3개 메뉴
+        String queryTB = "SELECT menu_name, price, menu_img FROM (SELECT menu_name, price, menu_img FROM ordertotal WHERE cafeteria_code = 'tb' ORDER BY totalcnt DESC) WHERE ROWNUM <= 3";
+        pstmt = conn.prepareStatement(queryTB);
+        rs = pstmt.executeQuery();
         while (rs.next()) {
-            // TODO 명신관 메뉴 받아오기
             Map<String, String> menuItem = new HashMap<>();
-
-            menuList.add(menuItem);
+            menuItem.put("menu_name", rs.getString("menu_name"));
+            menuItem.put("price", rs.getString("price"));
+            menuItem.put("menu_img", rs.getString("menu_img"));
+            tbMenuList.add(menuItem);
         }
+        rs.close();
+        pstmt.close();
     } catch (Exception e) {
         e.printStackTrace();
     } finally {
         if (rs != null) try { rs.close(); } catch (SQLException e) { e.printStackTrace(); }
-        if (stmt != null) try { stmt.close(); } catch (SQLException e) { e.printStackTrace(); }
+        if (pstmt != null) try { pstmt.close(); } catch (SQLException e) { e.printStackTrace(); }
         if (conn != null) try { conn.close(); } catch (SQLException e) { e.printStackTrace(); }
     }
-    request.setAttribute("menuList", menuList);
+    request.setAttribute("tbMenuList", tbMenuList);
 %>
 
 <%@ include file="bar.jsp" %>
@@ -46,35 +50,21 @@
 <body>
 <div class="mainpage">
     <ul class="category">
-        <li class="menu-item" id="mspopular" onclick="selectMenu('MS')"><a href="POPULARpage.jsp">명신관</a></li>
-        <li class="menu-item selected" id="tbpopular" onclick="selectMenu('TB')"><a href="TBpopularpage.jsp">더베이크</a></li>
+        <li class="menu-item" id="mspopular" onclick="selectMenu('ms')"><a href="POPULARpage.jsp">명신관</a></li>
+        <li class="menu-item selected" id="tbpopular" onclick="selectMenu('tb')"><a href="TBpopularpage.jsp">더베이크</a></li>
     </ul>
     <div class="menu-container" id="menu-container">
+        <% for (Map<String, String> menuItem : tbMenuList) { %>
         <button class="menu-item-card1">
             <div class="menu-item-background">
-                <div class="menu-item-image" style="background-image: url('images/image1.png');"></div>
+                <div class="menu-item-image" style="background-image: url('<%= menuItem.get("menu_img") != null ? menuItem.get("menu_img") : "images/image_yet.png" %>');"></div>
                 <div class="menu-item-divider"></div>
-                <div class="menu-item-name">모카번</div>
-                <div class="menu-item-price">4,500원</div>
+                <div class="menu-item-name"><%= menuItem.get("menu_name") %></div>
+                <div class="menu-item-price"><%= menuItem.get("price") %>원</div>
             </div>
         </button>
-        <button class="menu-item-card1">
-            <div class="menu-item-background">
-                <div class="menu-item-image" style="background-image: url('images/image1.png');"></div>
-                <div class="menu-item-divider"></div>
-                <div class="menu-item-name">베이글</div>
-                <div class="menu-item-price">4,500원</div>
-            </div>
-        </button>
-        <button class="menu-item-card1">
-            <div class="menu-item-background">
-                <div class="menu-item-image" style="background-image: url('images/image1.png');"></div>
-                <div class="menu-item-divider"></div>
-                <div class="menu-item-name">에그타르트</div>
-                <div class="menu-item-price">4,500원</div>
-            </div>
-        </button>
-     </div>
+        <% } %>
+    </div>
 </div>
 <script>
     function selectMenu(category) {
@@ -82,11 +72,11 @@
         for (var i = 0; i < items.length; i++) {
             items[i].classList.remove('selected');
         }
-        document.getElementById(category).classList.add('selected');
+        document.getElementById(category + 'popular').classList.add('selected');
     }
 
     document.addEventListener('DOMContentLoaded', function() {
-        selectMenu('TB');
+        selectMenu('tb');
     });
 </script>
 </body>

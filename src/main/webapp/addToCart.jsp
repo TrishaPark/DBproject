@@ -2,6 +2,7 @@
          pageEncoding="UTF-8"%>
 <%@ page import="java.sql.*" %>
 
+
 <%
   // 세션에서 로그인된 사용자 ID 가져오기
   String user = (String) session.getAttribute("user");

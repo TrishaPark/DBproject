@@ -12,17 +12,18 @@ Connection myConn = null;
 Statement stmt = null;
 ResultSet rs = null;
 boolean isValidUser = false;
+String nickname = null;
 
 try {
     Class.forName(dbDriver);
     myConn = DriverManager.getConnection(dbURL, dbUser, dbPasswd);
-    String mySQL = "SELECT user_id FROM user_info WHERE user_id='" + user_id + "' AND user_password ='" + user_password + "'";
+    String mySQL = "SELECT user_id,nickname FROM user_info WHERE user_id='" + user_id + "' AND user_password ='" + user_password + "'";
     stmt = myConn.createStatement();
     rs = stmt.executeQuery(mySQL);
     
     if (rs.next()) {
         isValidUser = true;
-        
+        nickname = rs.getString("nickname");
     }
 } catch (Exception e) {
     e.printStackTrace();
@@ -38,7 +39,7 @@ try {
 
 if (isValidUser) {
     session.setAttribute("user", user_id);
-    
+    session.setAttribute("nickname", nickname);
     response.sendRedirect("home_page.jsp");
 } else {
     
