@@ -5,6 +5,14 @@
     <title>숙명식당</title>
     <link rel="stylesheet" href="css/barstyle.css"> <!-- 스타일시트 연결 -->
 </head>
+<style>
+ 		p {
+ 			font-family: 'Noto Sans';
+            font-size: 16px;
+            color : #3D5576;
+            font-weight: bold;
+        	}
+</style>
 <body>
     <header>
         <div class="top-bar">
@@ -13,11 +21,12 @@
             	<img src="images/logo.svg" alt="로고" class="logo"> <!-- 로고 이미지 -->
             	<div class="page-title"><a href="home_page.jsp">숙명식당</a></div>
           	</div>
-            <div class="user-controls">
-            <%
+          	 <%
     String nickname = (String) session.getAttribute("nickname");
 %>
             	<p>환영합니다, <%= nickname %>!</p>
+            <div class="user-controls">
+        
                 <a href="logout.jsp">로그아웃</a>
                 <a href="mypage.jsp">마이페이지</a>
                 <a href="cart.jsp">장바구니</a>

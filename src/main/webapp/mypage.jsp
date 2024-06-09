@@ -110,7 +110,7 @@
       <div class="components">
       <%
     String user_id = (String) session.getAttribute("user");
-	String nickname = (String) session.getAttribute("nickname");
+	
        
 
 %>
